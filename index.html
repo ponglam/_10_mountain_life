@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eae7df">
+<title>Mountain Life — FORM / TIME</title>
+<link rel="icon" href="data:,">
+<link rel="preload" href="vendor/geo-art/fonts/CormorantGaramond-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="vendor/geo-art/style.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#gallery">Skip to artwork</a>
+<header><a class="wordmark" href="./">FORM <i>/</i> TIME</a><span class="header-note">A STUDY IN CONTINUOUS BECOMING</span><span class="edition">MOUNTAIN LIFE</span></header>
+<main>
+  <aside class="intro" aria-label="Create your landscape">
+    <div class="eyebrow"><span class="dot" aria-hidden="true"></span> GENERATIVE LANDSCAPES</div>
+    <h1>Mountain<br>Life.</h1>
+    <p class="lede">Be inspired by the shanshui of your life. Witness the changes through the years. Who is your mountain? Who are the clouds?</p>
+    <form id="form" novalidate>
+      <div class="section-number">01 <span>YOUR ORIGIN</span></div>
+      <label for="name">Name</label><input type="text" id="name" autocomplete="off" maxlength="60" aria-describedby="err">
+      <label for="date">Date of birth</label><input type="date" id="date" min="1900-01-01" aria-describedby="err">
+      <label for="time">Time of birth</label><input type="time" id="time" aria-describedby="err">
+      <p class="err" id="err" role="alert"></p>
+      <button class="primary" type="submit" id="gen">Generate landscape <span aria-hidden="true">↗</span></button>
+      <button class="chance" type="button" id="moment">A life A moment <span aria-hidden="true">⤨</span></button>
+    </form>
+  </aside>
+  <section class="gallery" id="gallery" aria-label="Artwork and timeline" tabindex="-1">
+    <div class="art-top"><span>A LIFE IN LANDSCAPE</span><span>ORIGIN STUDY</span></div>
+    <p class="err" id="glNote" role="alert" hidden>This browser has no WebGL2, which the drawing needs.</p>
+    <div class="stage" id="stage"><div class="art-wrap"><canvas id="art" aria-label="Generated mountain landscape"></canvas></div></div>
+    <div class="art-bottom"><span>MOUNTAIN · WATER · SKY</span><span>INK ON A DIGITAL GROUND</span></div>
+    <div class="timeline">
+      <div class="timeline-heading"><span>03 &nbsp; PASSAGE OF TIME</span><output id="phiOut" for="phi">age 0</output></div>
+      <input type="range" id="phi" min="0" max="100" step="0.1" value="0" aria-label="Age, in years from birth">
+      <div class="ticks" aria-hidden="true"><span>BIRTH</span><span>50 YEARS</span><span>100 YEARS</span></div>
+      <div class="playback"><label class="check"><input type="checkbox" id="live"> Let time drift</label></div>
+    </div>
+  </section>
+  <aside class="impression" aria-label="Landscape details and export">
+    <div class="portrait-details">
+      <div class="section-number">02 <span>THIS IMPRESSION</span></div>
+      <p class="meta" id="elementInfo"></p>
+      <p class="small-note" id="sceneInfo"></p>
+    </div>
+    <fieldset><legend>Format</legend><div class="views">
+      <label><input type="radio" name="aspect" value="3:4" checked><span>3:4</span></label>
+      <label><input type="radio" name="aspect" value="4:3"><span>4:3</span></label>
+      <label><input type="radio" name="aspect" value="1:1"><span>1:1</span></label>
+    </div></fieldset>
+    <fieldset><legend>Image size</legend><div class="views">
+      <label><input type="radio" name="size" value="4096" checked><span>4K</span></label>
+      <label><input type="radio" name="size" value="8192"><span>8K</span></label>
+    </div></fieldset>
+    <button class="outline" type="button" id="exportBtn">Save image <span aria-hidden="true">↓</span></button>
+    <p class="err" id="saveErr" role="alert"></p>
+  </aside>
+</main>
+<footer><span>MOUNTAIN · WATER · SKY · TIME</span><span>Same origin. An ever-changing impression.</span><span>LOCAL STUDIO / MOUNTAIN LIFE</span></footer>
+
+<!--
+  Scripts: classic <script> files sharing one namespace, window.ML.
+  Order matters (each file uses modules loaded before it). No build step,
+  so the page also runs by double-clicking index.html (file://).
+-->
+<!-- Vendor (LGPL-2.1): p5.js 1.9.4, used for its Perlin noise() -->
+<script src="vendor/p5.min.js"></script>
+<!-- Core -->
+<script src="js/core/math.js"></script>
+<script src="js/core/random.js"></script>
+<script src="js/core/color.js"></script>
+<script src="js/core/frame.js"></script>
+<!-- Model: seed → genome → scene at time φ -->
+<script src="js/model/five-elements.js"></script>
+<script src="js/model/noise.js"></script>
+<script src="js/model/genome.js"></script>
+<script src="js/model/landscape.js"></script>
+<script src="js/model/sky.js"></script>
+<!-- Rendering + export -->
+<script src="js/render/render.js"></script>
+<script src="js/export/export.js"></script>
+<!-- App -->
+<script src="js/app/seed.js"></script>
+<script src="js/app/main.js"></script>
+</body>
+</html>
